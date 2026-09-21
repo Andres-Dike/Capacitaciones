@@ -1,0 +1,5 @@
+public interface Inter_tarea {
+    void crearTarea();
+    void asignarTarea();
+    void eliminarTarea();
+}

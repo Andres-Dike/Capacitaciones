@@ -1,0 +1,34 @@
+// Esta clase aplica el principio de Responsabilidad Única (SRP),
+// ya que se encarga únicamente de gestionar los empleados.
+import capacitacion_01.Ejercicios_solid_java.Model_empleados;
+public class Gestion_empleados{
+
+Empleado[] empleados = new Empleado[10];
+    int contador = 0;
+
+    public void registrarEmpleado(Empleado empleado) {
+        if (contador < empleados.length) {
+            empleados[contador] = empleado;
+            contador++;
+            System.out.println("Empleado registrado correctamente.");
+        } else {
+            System.out.println("No hay espacio para más empleados.");
+        }
+    }
+    public void eliminarEmpleado(Empleado empleado) {
+        for (int i = 0; i < contador; i++) {
+            if (empleados[i].equals(empleado)) {
+              
+                for (int j = i; j < contador - 1; j++) {
+                    empleados[j] = empleados[j + 1];
+                }
+                empleados[contador - 1] = null; // Eliminar la referencia al último elemento
+                contador--;
+                System.out.println("Empleado eliminado correctamente.");
+                return;
+            }
+        }
+        System.out.println("Empleado no encontrado.");
+    }
+}
+ 

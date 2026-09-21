@@ -1,0 +1,9 @@
+public class Pinguino extends Ave {
+    @Override
+    public void volar() {
+        throw new UnsupportedOperationException("Los pingüinos no pueden volar.");
+    }
+    public void comer() {
+        System.out.println("El pingüino está comiendo.");
+    }
+}

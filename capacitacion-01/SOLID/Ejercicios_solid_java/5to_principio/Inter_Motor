@@ -1,0 +1,3 @@
+public interface Inter_Motor{
+    void encender();
+}

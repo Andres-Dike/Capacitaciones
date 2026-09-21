@@ -1,0 +1,35 @@
+public class Programador implements Trabajador {
+    @Override
+    public void trabajar() {
+        System.out.println("El programador está trabajando.");
+    }
+
+    @Override
+    // el proeblma es que el programador no puede conducir mientras trabaja, 
+    // por lo que se lanza una excepción UnsupportedOperationException para indicar que esta operación no es compatible con la clase Programador.
+    public void conducir() {
+        throw new UnsupportedOperationException("El programador no puede conducir.");
+    }
+
+    @Override
+    public void comer() {
+        System.out.println("El programador está comiendo.");
+    }
+}
+// lo ideal es separar la interfaz trabajador en 2 interfaces,
+//  una para las acciones de trabajar y otra para las acciones de conducir,
+//  de esta manera el programador solo implementaría la interfaz de trabajar y no tendría que implementar
+//  la interfaz de conducir.
+class Programador2 implements Trabajador, Comedor {
+    @Override
+    public void trabajar() {
+        System.out.println("El programador está trabajando.");
+    }
+
+    @Override
+    public void comer() {
+        System.out.println("El programador está comiendo.");
+    }
+}
+// de esta manera el programador solo implementaría la interfaz de trabajar y no tendría que implementar
+//  la interfaz de conducir, cumpliendo con el principio de segregación de interfaces.

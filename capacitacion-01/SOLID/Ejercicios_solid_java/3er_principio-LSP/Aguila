@@ -1,0 +1,13 @@
+
+// Estra clase representa el principioo 3 de SOLID, ya que se ha separado la funcionalidad de volar en una interfaz Volador,
+// y la clase Aguila implementa esa interfaz, mientras que la clase Pinguino no implementa la interfaz Volador, ya que los pingüinos no pueden volar.
+//  Esto permite que las clases tengan responsabilidades claras y evita la violación del principio de sustitución de Liskov.  
+public interface Aguila implements Volador {
+    @Override
+    public void volar() {
+        System.out.println("El águila puede volar.");
+    }
+    public void comer() {
+        System.out.println("El águila está comiendo.");
+    }
+}

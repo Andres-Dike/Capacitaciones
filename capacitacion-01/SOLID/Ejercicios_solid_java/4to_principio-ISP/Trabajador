@@ -1,0 +1,5 @@
+public interface Trabajador {
+    void trabajar();
+    void conducir();
+    void comer()
+}

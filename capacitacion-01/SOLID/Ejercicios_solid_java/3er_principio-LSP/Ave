@@ -1,0 +1,8 @@
+public class Ave {
+    public void volar() {
+        System.out.println("El ave puede volar.");
+    }
+    public void comer() {
+        System.out.println("El ave está comiendo.");
+    }
+}

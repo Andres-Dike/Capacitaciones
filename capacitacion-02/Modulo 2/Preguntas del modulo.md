@@ -1,0 +1,2 @@
+Responder qué cambiaría si el almacenamiento dejara de ser en memoria.
+Si el almacenamiento dejara de ser en memoria habria que crear una clase conexion para montar la bd y una repositoy para administrar los comandos en caso de que sea MySQL

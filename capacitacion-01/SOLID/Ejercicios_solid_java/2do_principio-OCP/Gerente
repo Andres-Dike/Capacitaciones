@@ -1,0 +1,12 @@
+public class Gerente implements Calculable {
+    private double salario;
+
+    public Gerente(double salario) {
+        this.salario = salario;
+    }
+
+
+    public double calcularSalario() {
+        return salario;
+    }
+}

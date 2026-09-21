@@ -1,0 +1,41 @@
+import capacitacion_01.App_Gestion_Tarea.Usuario;
+public class Gestion_Tarea {
+   String [] tareas = new String[10];
+   public void crearTarea(String tarea) {
+       for (int i = 0; i < tareas.length; i++) {
+           if (tareas[i] == null) {
+               tareas[i] = tarea;
+               System.out.println("Tarea creada: " + tarea);
+               return;
+           }
+       }
+       System.out.println("No se pueden crear más tareas.");
+   }
+   public void asignarTarea(String tarea, String empleado) {
+       for (int i = 0; i < tareas.length; i++) {
+           if (tareas[i] != null && tareas[i].equals(tarea)) {
+               System.out.println("Tarea '" + tarea + "' asignada a " + empleado);
+               return;
+           }
+       }
+       System.out.println("Tarea no encontrada: " + tarea);
+   }
+   public void tareaRealizada(String tarea, Usuario usuario) {
+       for (int i = 0; i < tareas.length; i++) {
+           if (tareas[i] != null && tareas[i].equals(tarea)) {
+               System.out.println("Tarea '" + tarea + "' realizada por " + usuario.getNombre());
+               
+           }
+       }
+       System.out.println("Tarea no encontrada: " + tarea);
+    public void eliminarTarea(String tarea) {
+         for (int i = 0; i < tareas.length; i++) {
+              if (tareas[i] != null && tareas[i].equals(tarea)) {
+                tareas[i] = null;
+                System.out.println("Tarea eliminada: " + tarea);
+                return;
+              }
+         }
+         System.out.println("Tarea no encontrada: " + tarea);
+        }
+}

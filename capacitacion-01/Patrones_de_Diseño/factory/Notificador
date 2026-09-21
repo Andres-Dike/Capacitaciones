@@ -1,0 +1,33 @@
+public class Notificador {
+    public void enviar(String tipo)
+        if(tipo.equals("email")){
+            Email email = new Email();
+            email.enviar();
+        }else if(tipo.equals("sms")){
+            Sms sms = new Sms();
+            sms.enviar();
+    }
+}
+
+// sin factory el notificador sabe las condiciones del mensaje
+public class NotificacionFactory {
+
+    public static Notificacion crear(String tipo) {
+
+        if (tipo.equals("email")) {
+            return new Email();
+        }
+
+        if (tipo.equals("sms")) {
+            return new SMS();
+        }
+
+        return null;
+    }
+
+    Notificacion notificacion = NotificacionFactory.crear("email");
+    Notificacion notificacion2 = NotificacionFactory.crear("sms");
+    notificacion.enviar();
+    notificacion2.enviar();
+    //El código que necesita la notificación no se preocupa por cómo se crea.
+}

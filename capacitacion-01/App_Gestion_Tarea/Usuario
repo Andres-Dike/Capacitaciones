@@ -1,0 +1,15 @@
+public class Usuario {
+    String nombre;
+    String tarea;
+    public Usuario(String nombre, String tarea){
+        this.nombre=nombre;
+        this.tarea=tarea;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public String getTarea() {
+        return tarea;
+    }
+
+}

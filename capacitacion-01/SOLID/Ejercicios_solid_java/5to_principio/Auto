@@ -1,0 +1,30 @@
+public class Auto {
+
+    private Motor motor;
+
+    public Auto() {
+        motor = new Motor();
+    }
+
+    public void arrancar() {
+        motor.encender();
+    }
+}
+// aqui el prpblema es que si mañana aparece un nuevo tipo de motor,
+//  tendriamos que modificar la clase auto, 
+//  lo ideal es crear una interfaz Motor y que la clase Auto dependa de esa interfaz,
+class Auto2  {
+
+    private Inter_Motor motor;
+
+    public Auto2(Inter_Motor motor) {
+        this.motor = motor;
+    }
+
+   
+    public void arrancar(){
+        motor.encender();
+    }
+}
+// de esta manera la clase Auto2 depende de la interfaz Inter_Motor y no de la clase Motor,
+//  cumpliendo con el principio de inversión de dependencias.

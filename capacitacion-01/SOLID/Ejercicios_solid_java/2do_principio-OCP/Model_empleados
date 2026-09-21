@@ -1,0 +1,14 @@
+public class Model_empleados {
+    String nombre; String apellido; double salario; String puesto;
+    public Model_empleados (String nombre, String apellido, double salario, String puesto){
+        this.nombre=nombre;this.apellido=apellido;this.salario=salario;this.puesto=puesto;
+    }
+    public String getPuesto() {
+    return puesto;  }
+    public void setSalario(double salario) {
+    this.salario = salario;
+    }
+    public double getSalario() {
+    return salario;  }
+}
+    

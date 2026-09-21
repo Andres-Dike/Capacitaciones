@@ -1,0 +1,25 @@
+public class Configuracion{
+    public Configuracion() {
+        
+    }
+    Configuracion c1 = new Configuracion();
+    Configuracion c2 = new Configuracion();
+}
+// esta mal, en esta regla solo se puede crear una instancia de la clase, 
+// no se pueden crear varias instancias.
+public class ConfiguracionSingleton {
+    private static ConfiguracionSingleton instancia;
+
+    private ConfiguracionSingleton() {
+        // Constructor privado para evitar instanciación externa
+    }
+
+    public static ConfiguracionSingleton getInstancia() {
+        if (instancia == null) {
+            instancia = new ConfiguracionSingleton();
+        }
+        return instancia;
+    }
+}
+//Singleton controla la creación de una clase para garantizar
+//  que solamente exista una instancia y proporcionar un punto global para acceder a ella.

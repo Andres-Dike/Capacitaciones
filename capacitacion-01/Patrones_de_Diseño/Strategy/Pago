@@ -1,0 +1,14 @@
+pulic class Pago{
+    private EstrategiaPago estrategia;
+
+    public Pago(EstrategiaPago estrategia) {
+        this.estrategia = estrategia;
+    }
+
+    public void realizarPago(double cantidad) {
+        estrategia.pagar(cantidad);
+    }
+    Pago pago = new Pago(new Pago_Tarjeta());
+    // puedo cambiar a pagar con paypál sin modificar  pago
+    
+}

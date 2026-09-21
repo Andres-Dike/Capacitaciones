@@ -1,0 +1,13 @@
+public class Calcular_Salario {
+public void adminSueldo(Empleado empleado) {
+    if (empleado.getPuesto().equals("Gerente")) {
+        empleado.setSalario(5000.0);
+    } else if (empleado.getPuesto().equals("Supervisor")) {
+        empleado.setSalario(3000.0);
+    } else if (empleado.getPuesto().equals("Empleado")) {
+        empleado.setSalario(2000.0);
+    } else {
+        System.out.println("Puesto no válido");
+    }
+}
+}

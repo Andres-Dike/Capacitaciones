@@ -1,0 +1,12 @@
+public class Supervisor implements Calculable {
+    private double salario;
+
+    public Supervisor(double salario) {
+        this.salario = salario;
+    }
+
+    @Override
+    public double calcularSalario() {
+        return salario;
+    }
+}

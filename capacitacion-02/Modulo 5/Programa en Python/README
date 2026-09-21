@@ -1,0 +1,310 @@
+# Pasos para ejecutar las APIs del ToDo con Docker y AWS SAM
+
+## Recursos necesarios
+
+* Python versión 3.14.x
+* Docker Desktop
+* AWS SAM CLI
+* AWS CLI
+* Visual Studio Code
+
+## Entorno de desarrollo
+
+* Visual Studio Code
+* Windows
+* Docker Desktop
+* AWS SAM CLI
+
+---
+
+## Paso 1
+
+### Instalar Python versión 3.14.x
+
+Desde CMD o PowerShell ejecutar:
+
+```bash
+winget install Python.Python.3.14
+```
+
+### Comprobar la instalación
+
+```bash
+python --version
+```
+
+El resultado esperado debe mostrar una versión `3.14.x`.
+
+---
+
+## Paso 2
+
+### Instalar Docker Desktop
+
+Instalar Docker Desktop en el computador.
+
+### Comprobar la instalación
+
+Desde CMD o PowerShell ejecutar:
+
+```bash
+docker --version
+```
+
+También se puede comprobar que Docker esté funcionando ejecutando:
+
+```bash
+docker run hello-world
+```
+
+Si Docker está correctamente instalado, se mostrará el mensaje de confirmación correspondiente.
+
+---
+
+## Paso 3
+
+### Instalar AWS SAM CLI
+
+Instalar AWS SAM CLI en el computador.
+
+### Comprobar la instalación
+
+```bash
+sam --version
+```
+
+Debe mostrarse la versión instalada de AWS SAM CLI.
+
+---
+
+## Paso 4
+
+### Comprobar AWS CLI
+
+Comprobar que AWS CLI esté instalado:
+
+```bash
+aws --version
+```
+
+AWS CLI permite interactuar con los servicios de AWS desde la terminal.
+
+---
+
+## Paso 5
+
+### Ubicarse en la carpeta del proyecto
+
+Desde la terminal de Visual Studio Code, ubicarse en la carpeta donde se encuentra el proyecto:
+
+```text
+capacitacion-02\Modulo 5\Programa en Python\serverless\todo-serverless
+```
+
+La estructura principal del proyecto debe ser similar a:
+
+```text
+todo-serverless/
+├── events/
+├── hello_world/
+│   ├── app.py
+│   ├── domain/
+│   │   └── Task.py
+│   ├── use_cases/
+│   │   ├── CreateTask.py
+│   │   ├── ListTask.py
+│   │   └── MarcarTask.py
+│   └── repository/
+│       └── TaskRepository.py
+├── template.yaml
+└── samconfig.toml
+```
+
+---
+
+## Paso 6
+
+### Construir el proyecto con AWS SAM
+
+Desde la carpeta raíz del proyecto ejecutar:
+
+```bash
+sam build
+```
+
+Este comando prepara la aplicación para su ejecución local mediante AWS SAM.
+
+Si la construcción es correcta, debe aparecer un mensaje indicando que el proceso de construcción finalizó correctamente.
+
+---
+
+## Paso 7
+
+### Ejecutar el servidor local
+
+Ejecutar:
+
+```bash
+sam local start-api
+```
+
+AWS SAM utilizará Docker para ejecutar localmente la función Lambda y crear el servidor de API.
+
+La API estará disponible en:
+
+```text
+http://127.0.0.1:3000
+```
+
+Las rutas disponibles serán:
+
+```text
+POST http://127.0.0.1:3000/tareas
+GET  http://127.0.0.1:3000/tareas
+PUT  http://127.0.0.1:3000/tareas
+```
+
+La terminal debe mostrar las rutas disponibles, por ejemplo:
+
+```text
+Mounting HelloWorldFunction at http://127.0.0.1:3000/tareas [POST]
+Mounting HelloWorldFunction at http://127.0.0.1:3000/tareas [GET]
+Mounting HelloWorldFunction at http://127.0.0.1:3000/tareas [PUT]
+```
+
+---
+
+## Paso 8
+
+### Ejecutar las APIs mediante Thunder Client
+
+Se puede utilizar Thunder Client desde Visual Studio Code para realizar las solicitudes HTTP.
+
+### Crear una tarea
+
+Método:
+
+```text
+POST
+```
+
+URL:
+
+```text
+http://127.0.0.1:3000/tareas
+```
+
+Body en formato JSON:
+
+```json
+{
+    "nombre": "Estudiar Lambda"
+}
+```
+
+La API creará una nueva tarea con el estado:
+
+```text
+completada: false
+```
+
+---
+
+### Listar las tareas
+
+Método:
+
+```text
+GET
+```
+
+URL:
+
+```text
+http://127.0.0.1:3000/tareas
+```
+
+No requiere Body.
+
+La API devolverá las tareas almacenadas actualmente.
+
+---
+
+### Modificar el estado de una tarea
+
+Método:
+
+```text
+PUT
+```
+
+URL:
+
+```text
+http://127.0.0.1:3000/tareas?nombre=Estudiar%20Lambda
+```
+
+Este endpoint busca la tarea mediante su nombre y modifica su estado a completada.
+
+---
+
+## Paso 9
+
+### Detener el servidor
+
+Para detener el servidor local de AWS SAM:
+
+```text
+Ctrl + C
+```
+
+---
+
+## Flujo de ejecución
+
+El funcionamiento del sistema es:
+
+```text
+Thunder Client
+       |
+       v
+API Gateway Local
+       |
+       v
+AWS SAM
+       |
+       v
+Docker
+       |
+       v
+Lambda (app.py)
+       |
+       v
+Use Cases
+       |
+       v
+Domain
+       |
+       v
+Repository
+```
+
+Docker se encarga de proporcionar el entorno de ejecución utilizado por AWS SAM para simular localmente la ejecución de la función Lambda.
+
+## Comandos principales
+
+| Acción                 | Comando               |
+| ---------------------- | --------------------- |
+| Ver versión de Python  | `python --version`    |
+| Ver versión de Docker  | `docker --version`    |
+| Ver versión de AWS SAM | `sam --version`       |
+| Ver versión de AWS CLI | `aws --version`       |
+| Construir proyecto     | `sam build`           |
+| Ejecutar API local     | `sam local start-api` |
+| Detener servidor       | `Ctrl + C`            |
+
+## Consideración importante
+
+Las tareas del proyecto se almacenan actualmente en memoria mediante el repositorio.
+
+Por esta razón, los datos pueden perderse cuando se reinicia la ejecución de Lambda o el servidor local. Para un sistema persistente en AWS, el repositorio puede reemplazarse posteriormente por una implementación utilizando una base de datos, por ejemplo Amazon DynamoDB.

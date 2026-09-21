@@ -1,0 +1,20 @@
+public abstract class Bebida {
+
+    public final void preparar() {
+        hervirAgua();
+        prepararBebida();
+        servir();
+    }
+
+    private void hervirAgua() {
+        System.out.println("Hirviendo agua");
+    }
+
+    protected abstract void prepararBebida();
+
+    private void servir() {
+        System.out.println("Sirviendo");
+    }
+}
+//el orden siempre es el mismo, primero hervir agua, luego preparar la bebida y finalmente servir.
+//pero si el orden ca

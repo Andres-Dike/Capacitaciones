@@ -1,0 +1,58 @@
+// Esta clase no representa el primer principio de SOLID, 
+// ya que tiene múltiples responsabilidades. 
+// La clase Empleado se encarga de registrar empleados y calcular su salario, 
+// lo cual viola el principio de responsabilidad única. Para cumplir con este principio, 
+// se debería separar la lógica de registro de empleados y la lógica de cálculo de salario en clases diferentes.
+public class Empleado {
+    public static void main(String[] args) {
+      Empleado empleado = new Empleado("Juan", "Pérez", 0.0, "Gerente");
+      empleado.registrarEmpleado(empleado);
+       empleado.calcularSalario(empleado);
+       System.out.println("Empleado registrado: " + empleado.nombre + " " + empleado.apellido + ", Salario: " + empleado.getSalario() + ", Puesto: " + empleado.getPuesto());
+    }
+    String nombre; String apellido; double salario; String puesto;
+    public Empleado (String nombre, String apellido, double salario, String puesto){
+        this.nombre=nombre;this.apellido=apellido;this.salario=salario;this.puesto=puesto;
+    }
+    public String getPuesto() {
+    return puesto;
+    }
+    public void setSalario(double salario) {
+    this.salario = salario;
+}
+
+public double getSalario() {
+    return salario;
+}
+
+  public static void calcularSalario(Empleado empleado) {
+
+        switch (empleado.getPuesto()) {
+            case "Gerente":
+                empleado.setSalario(5000.0);
+                break;
+            case "Supervisor":
+                empleado.setSalario(3000.0);
+                break;
+            case "Empleado":
+                empleado.setSalario(2000.0);
+                break;
+            default:
+                System.out.println("Puesto no válido");
+                return;
+        }
+       
+}
+  Empleado[] empleados = new Empleado[10];
+    int contador = 0;
+
+    public void registrarEmpleado(Empleado empleado) {
+        if (contador < empleados.length) {
+            empleados[contador] = empleado;
+            contador++;
+            System.out.println("Empleado registrado correctamente.");
+        } else {
+            System.out.println("No hay espacio para más empleados.");
+        }
+    }
+}
